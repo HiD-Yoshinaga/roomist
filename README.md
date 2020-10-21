@@ -1,24 +1,89 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+##  usersテーブル
 
-* Ruby version
+|      Column        |    Type    |             Options             |
+| ------------------ | ---------- | ------------------------------- |
+| nickname           | string     | null: false                     |
+| email              | string     | null: false, unipue: true       |
+| encrypted_password | string     | null: false                     |
+| profile_image      | string     |                                 |
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many : items
+- has_many : coordinate
+- has_many : coordinate
 
-* Database creation
+## items テーブル
 
-* Database initialization
+|       Column       |    Type    |             Options             |
+| ------------------ | ---------- | ------------------------------- |
+| item_name          | string     | null: false                     |
+| item_category_id   | integer    | null: false                     |
+| item_info          | text       |                                 |
+| price              | integer    |                                 |
+| link               | string     |                                 |
+| user               | references | null: false, foreign_key: true  |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many : coordinate
+- belongs_to : user
 
-* Deployment instructions
+## coordinate テーブル
+
+|      Column     |    Type    |            Options             |
+| --------------- | ---------- | ------------------------------ |
+| coordinate_info |            |                                |
+| user            | references | null: false, foreign_key: true |
+
+
+### Association
+
+- has_many : items
+- belongs_to : user
+
+## coordinate_items テーブル
+
+|       Column        |    Type    |            Options             |
+| ------------------- | ---------- | ------------------------------ |
+| coordinate          | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
+
+
+
+### Association
+
+- belongs_to :coordinate
+- belongs_to :item
+
+## coordinate_comments テーブル
+
+|       Column        |    Type    |            Options             |
+| ------------------- | ---------- | ------------------------------ |
+| content             | text       | null: false                    |
+| user                | references | null: false, foreign_key: true |
+| coordinate          | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :coordinate
+- belongs_to :user
+
+## item_comments テーブル
+
+|       Column        |    Type    |            Options             |
+| ------------------- | ---------- | ------------------------------ |
+| content             | text       | null: false                    |
+| user                | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
 
 * ...
