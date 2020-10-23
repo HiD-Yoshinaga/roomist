@@ -14,8 +14,9 @@
 ### Association
 
 - has_many : items
-- has_many : coordinate
-- has_many : coordinate
+- has_many : coordinates
+- has_many : coordinate_comments
+- has_many : item_comments
 
 ## items テーブル
 
@@ -30,14 +31,14 @@
 
 ### Association
 
-- has_many : coordinate
+- has_many : coordinates
 - belongs_to : user
 
-## coordinate テーブル
+## coordinates テーブル
 
 |      Column     |    Type    |            Options             |
 | --------------- | ---------- | ------------------------------ |
-| coordinate_info |            |                                |
+| coordinate_info | text       |                                |
 | user            | references | null: false, foreign_key: true |
 
 
