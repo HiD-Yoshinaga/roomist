@@ -16,4 +16,10 @@ class CoordinateController < ApplicationController
       render :new
     end
   end
+
+  private
+
+  def coordinate_params
+    params.require(:coordinate).premit(:coordinate_info, :images: []).merge(user_id: current_user.id)
+  end
 end
