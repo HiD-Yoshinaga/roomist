@@ -9,7 +9,7 @@ class CoordinateController < ApplicationController
   end
 
   def create
-    @coordinate = Coordinate.new(item_params)
+    @coordinate = Coordinate.new(coordinate_params)
     if @coordinate.save
       redirect_to root_path
     else
