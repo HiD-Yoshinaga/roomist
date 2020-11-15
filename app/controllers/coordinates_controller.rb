@@ -1,4 +1,4 @@
-class CoordinateController < ApplicationController
+class CoordinatesController < ApplicationController
 
   def index
     @coordinate = Coordinate.all.order('created_at DESC')
@@ -19,7 +19,7 @@ class CoordinateController < ApplicationController
 
   private
 
-  def coordinate_params
-    params.require(:coordinate).premit(:coordinate_info, :images: []).merge(user_id: current_user.id)
-  end
+  # def coordinate_params
+  #   params.require(:coordinate).premit(:coordinate_info, :images: []).merge(user_id: current_user.id)
+  # end
 end

@@ -1,3 +1,3 @@
-<%= form.text_field :image, placeholder: "Image Url" %>
-<%= form.text_area :text, placeholder: "text", rows: "10" %>
+<%= f.file_field :images, name: 'item[images][]', id:"coordinates-image" %>
+<%= form.text_area :coordinate_info, placeholder: "text", rows: "50" %>
 <%= form.submit "SEND" %>
