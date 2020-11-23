@@ -1,15 +1,15 @@
 <%= render "shared/header" %>
 <div class='main'>
   <%# コーディネート一覧 %>
-  <div class='item-contents'>
+  <div class='coordinate-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿', new_coordinate_path, class: "subtitle" %>
-    <ul class='item-lists'>
-      <%# @coordinates.each do |coordinate| %>
+    <ul class='coordinate-lists'>
+      <% @coordinates.each do |coordinate| %>
         <li class='list'>
-          <%#= link_to coordinate_path(.id), method: :get do %>
+          <%= link_to coordinate_path(coordinate.id), method: :get do %>
             <div class='coordinate-img-content'>
-            <%#= image_tag coordinate.images[0].variant(resize: '500x500'), class: "coordinate-img" %>
+            <%= image_tag coordinate.images[0], class: "coordinate-img" %>
             </div>
             <div class='coordinate-info'>
               <div class='star-btn'>
@@ -17,9 +17,9 @@
                 <span class='star-count'>0</span>
               </div>
             </div>
-          <%# end %>
+          <% end %>
         </li>
-      <%# end %>
+      <% end %>
 
       <%# コーディネートがない場合のダミー %>
       <% unless @coordinate.present? %>

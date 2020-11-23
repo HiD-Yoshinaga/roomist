@@ -1,7 +1,9 @@
 class CoordinatesController < ApplicationController
+  before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
-    @coordinate = Coordinate.all.order('created_at DESC')
+    @coordinates = Coordinate.all.order('created_at DESC')
   end
 
   def new
@@ -19,7 +21,15 @@ class CoordinatesController < ApplicationController
 
   private
 
-  # def coordinate_params
-  #   params.require(:coordinate).premit(:coordinate_info, :images: []).merge(user_id: current_user.id)
-  # end
+  def coordinate_params
+    params.require(:coordinate).permit(:coordinate_info, images: []).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Coordinate.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 end
